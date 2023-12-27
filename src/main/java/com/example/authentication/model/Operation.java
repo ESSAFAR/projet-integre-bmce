@@ -1,33 +1,28 @@
 package com.example.authentication.model;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Operation {
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String description;
     private float montant;
     private Date date;
 
-    public Operation(int id, String description, float montant, Date date) {
-        this.id = id;
-        this.description = description;
-        this.montant = montant;
-        this.date = date;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public float getMontant() {
-        return montant;
-    }
-
-    public Date getDate() {
-        return date;
-    }
 }

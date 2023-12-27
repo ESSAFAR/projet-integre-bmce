@@ -2,41 +2,37 @@ package com.example.authentication.model;
 
 
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
-abstract class Carte {
-    private int id;
-        private float solde;
-        private List<Operation> operations;
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE", length = 4)
+public abstract class Carte {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private float solde;
+    @ManyToOne
+    private Entreprise entreprise;
 
-        public Carte(int id) {
-            this.id = id;
-            this.solde = 0;
-            this.operations = new ArrayList<>();
-        }
+    @OneToMany
+    private Collection<Operation> operations;
 
-        public int getId() {
-            return id;
-        }
-
-        public float getSolde() {
-            return solde;
-        }
-
-        public List<Operation> getOperations() {
+    public Collection<Operation> getTracabilite() {
             return operations;
-        }
+    }
 
-        public void ajouterOperation(Operation operation) {
-            operations.add(operation);
-        }
-
-        public abstract String getType();
-
-        public abstract String getInfo();
-        public List<Operation> getTracabilite() {
-            return operations;
-         }
 }
