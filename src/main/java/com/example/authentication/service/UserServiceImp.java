@@ -1,19 +1,17 @@
 package com.example.authentication.service;
 
-import com.example.authentication.Repositories.RoleRepository;
-import com.example.authentication.Repositories.UserRepository;
+import com.example.authentication.repository.RoleRepository;
+import com.example.authentication.repository.UserRepository;
 import com.example.authentication.model.Role;
 import com.example.authentication.model.User;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+
 @Service
 @Transactional
 @AllArgsConstructor
